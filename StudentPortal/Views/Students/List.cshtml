@@ -1,0 +1,108 @@
+﻿@model IEnumerable<StudentPortal.Models.Entitie.Student>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X Standard Students</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7L8hF0gt9UoC8D6gKcZp3BLV4vDk4m93h5M" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>X Standard Students</h1>
+
+        <div>
+            <button class="btn btn-primary" id="add-btn" >Add Student</button>
+        </div>
+        <div id="add-form"></div>
+       
+
+        <table class="table table-light" id="st-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone No</th>
+                    <th>Percentage</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="st-tbl-body">
+                @foreach (var student in Model)
+                {
+                    <tr id="student-@student.Id">
+                        <td>@student.Id</td>
+                        <td>@student.Name</td>
+                        <td>@student.Email</td>
+                        <td>@student.Phone</td>
+                        <td>@student.Percentage</td>
+                     <td>
+                            <a class="btn btn-primary edit-button" href="#"
+                               data-id="@student.Id"
+                               data-name="@student.Name"
+                               data-email="@student.Email"
+                               data-phone="@student.Phone"
+                               data-percentage="@student.Percentage"
+                               data-bs-toggle="modal"
+                               data-bs-target="#editModal">Edit</a>
+
+                            <form asp-action="Delete" asp-controller="Students" method="post" style="display:inline;" onsubmit="return confirmDelete(event, this);">
+                                <input type="hidden" name="id" value="@student.Id" />
+                                <button type="submit" class="btn btn-danger ms-3">Delete</button>
+                            </form>
+
+                            <button id="promote" type="button" class="btn btn-success" >Promote</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Student</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <input type="hidden" id="studentId" name="id" />
+                        <div class="mb-3">
+                            <label for="studentName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="studentName" name="name" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="studentEmail" name="email" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentPhone" class="form-label">Phone No</label>
+                            <input type="text" class="form-control" id="studentPhone" name="phone" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentPercentage" class="form-label">Percentage</label>
+                            <input type="number" class="form-control" id="studentPercentage" name="percentage" required />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveChanges">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-RCzF8X9UsUq+QFTx7gD2i7m/9QStHUn2U/O2W0kIM/WoG1fj4qKoI3v/aIP0FhHj" crossorigin="anonymous"></script>
+<script src="~/js/list.js"></script>
+<script src="~/js/Add.js"></script>
