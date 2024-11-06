@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X Standard Students</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7L8hF0gt9UoC8D6gKcZp3BLV4vDk4m93h5M" crossorigin="anonymous">
+    <link href="~/lib/jquery/dist/jquery-ui-1.14.1/jquery-ui.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -55,6 +56,13 @@
                                 <input type="hidden" name="id" value="@student.Id" />
                                 <button type="submit" class="btn btn-danger ms-3">Delete</button>
                             </form>
+
+                              <div id="dialog" title="Are You Sure" style="display:none">
+                                <p>re You Sure you want to Delete this Student</p>
+                                      <button id="confirm">Yes</button>
+                                      <button id="cancel">Cancel</button>
+
+                              </div>
 
                             <button id="promote" type="button" class="btn btn-success" >Promote</button>
                         </td>
@@ -106,3 +114,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-RCzF8X9UsUq+QFTx7gD2i7m/9QStHUn2U/O2W0kIM/WoG1fj4qKoI3v/aIP0FhHj" crossorigin="anonymous"></script>
 <script src="~/js/list.js"></script>
 <script src="~/js/Add.js"></script>
+
+
+

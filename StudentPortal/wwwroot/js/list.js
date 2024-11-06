@@ -19,11 +19,11 @@
         event.preventDefault();
 
         const studentData = {
-            id: $('#studentId').val(),
-            name: $('#studentName').val(),
-            email: $('#studentEmail').val(),
-            phone: $('#studentPhone').val(),
-            percentage: $('#studentPercentage').val()
+            Id: $('#studentId').val(),
+            Name: $('#studentName').val(),
+            Email: $('#studentEmail').val(),
+            Phone: $('#studentPhone').val(),
+            Percentage: $('#studentPercentage').val()
         };
 
         $.ajax({
@@ -33,11 +33,11 @@
             data: JSON.stringify(studentData),
             success: function (response) {
                 if (response.success) {
-                    const studentRow = $('#student-' + studentData.id);
-                    studentRow.find('td:eq(1)').text(studentData.name);
-                    studentRow.find('td:eq(2)').text(studentData.email);
-                    studentRow.find('td:eq(3)').text(studentData.phone);
-                    studentRow.find('td:eq(4)').text(studentData.percentage);
+                    const studentRow = $('#student-' + studentData.Id);
+                    studentRow.find('td:eq(1)').text(studentData.Name);
+                    studentRow.find('td:eq(2)').text(studentData.Email);
+                    studentRow.find('td:eq(3)').text(studentData.Phone);
+                    studentRow.find('td:eq(4)').text(studentData.Percentage);
 
                     $('#editModal').modal('hide');
                 } else {
@@ -106,7 +106,9 @@
             }
         });
     });
+
 });
+
 
 function confirmDelete(event, form) {
     event.preventDefault();
@@ -117,3 +119,5 @@ function confirmDelete(event, form) {
         console.log("Deletion cancelled.");
     }
 }
+
+

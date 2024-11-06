@@ -6,33 +6,40 @@
     <form id="addStudentForm" method="post">
         <div asp-validation-summary="All"></div>
         <div class="mt-3">
-            <label class="form-label" asp-for="Name">Name</label>
-            <input type="text" name="Name" required class="form-control" id="Name" />
+            <label class="form-label">Name</label>
+            <input type="text" asp-for="Name" class="form-control" id="Name" />
             <span asp-validation-for="Name"></span>
         </div>
         <div class="mt-3">
             <label class="form-label" asp-for="Email"> Email</label>
-            <input name="Email" type="email" required id="Email" class="form-control" />
+            <input type="email" asp-for="Email" class="form-control" />  
             <span asp-validation-for="Email"></span>
 
         </div>
         <div class="mt-3">
             <label class="form-label" asp-for="Phone"> Phone No</label>
-            <input name="Phone" type="number" id="Phone" required class="form-control" />
+            <input asp-for="Phone" required class="form-control" />
             <span asp-validation-for="Phone"></span>
 
         </div>
         <div class="mt-3">
             <label class="form-label" asp-for="Percentage">Percentage</label>
-            <input name="Percentage" type="number" id="Percentage" required class="form-control" />
+            <input asp-for="Percentage" required class="form-control" />
             <span asp-validation-for="Percentage"></span>
 
         </div>
+        <div id="save-msg" style="display:none;"></div>
         <div class="mt-3">
             <button type="submit" class="btn btn-primary" id="save">Save</button>
         </div>
     </form>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
 
 

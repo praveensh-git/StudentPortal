@@ -36,10 +36,10 @@ namespace StudentPortal.Controllers
 
             if (!ModelState.IsValid)
             {
-               var list = new List<string>();
-               foreach(var prop in ModelState.Values)
+                var list = new List<string>();
+                foreach (var prop in ModelState.Values)
                 {
-                    foreach(var err in prop.Errors)
+                    foreach (var err in prop.Errors)
                     {
                         list.Add(err.ErrorMessage);
                     }
@@ -97,24 +97,27 @@ namespace StudentPortal.Controllers
                     existingStudent.Phone = student.Phone;
                     existingStudent.Percentage = student.Percentage;
 
-                    context.SaveChanges(); 
+                  await context.SaveChangesAsync();
 
                     return Json(new { success = true, message = "Student updated successfully!" });
+                    //return Ok();
                 }
                 else
                 {
                     return Json(new { success = false, message = "Student not found." });
+                  //return NotFound();
                 }
             }
 
             return Json(new { success = false, message = "Validation failed." });
+          //  return BadRequest();
         }
     
 
     [HttpPost]
-        public async Task<IActionResult> Delete(Student viewModel)
+        public async Task<IActionResult> Delete(Student std)
         {
-            var student = await context.Students.FindAsync(viewModel.Id);
+            var student = await context.Students.FindAsync(std.Id);
             if (student is not null)
             {
                 context.Students.Remove(student);

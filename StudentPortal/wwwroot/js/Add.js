@@ -23,48 +23,52 @@
     $(document).on('submit', '#addStudentForm', function (event) {
         event.preventDefault();
 
-        $('.error-message').remove();
+        //$('.error-message').remove();
 
         
-        let isValid = true;
+        //let isValid = true;
 
         
-        const name = $("#Name").val().trim();
-        const email = $("#Email").val().trim();
-        const phone = $("#Phone").val().trim();
-        const percentage = $("#Percentage").val().trim();
+        //const name = $("#Name").val().trim();
+        //const email = $("#Email").val().trim();
+        //const phone = $("#Phone").val().trim();
+        //const percentage = $("#Percentage").val().trim();
 
         
-        if (!name) {
-            isValid = false;
-            $("#Name").after('<span class="error-message" style="color:red;">Please enter your name.</span>');
-        }
+        //if (!name) {
+        //    isValid = false;
+        //    $("#Name").after('<span class="error-message" style="color:red;">Please enter your name.</span>');
+        //}
 
         
-        const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-        if (!email || !emailPattern.test(email)) {
-            isValid = false;
-            $("#Email").after('<span class="error-message" style="color:red;">Please enter a valid email.</span>');
-        }
+        //const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+        //if (!email || !emailPattern.test(email)) {
+        //    isValid = false;
+        //    $("#Email").after('<span class="error-message" style="color:red;">Please enter a valid email.</span>');
+        //}
 
         
-        const phonePattern = /^\d{10}$/;
-        if (!phone || !phonePattern.test(phone)) {
-            isValid = false;
-            $("#Phone").after('<span class="error-message" style="color:red;">Phone number must be 10 digits.</span>');
-        }
+        //const phonePattern = /^\d{10}$/;
+        //if (phone != undefined && phonePattern.test(phone) == false) {
+        //    isValid = false;
+        //    $("#Phone").after('<span class="error-message" style="color:red;">Phone number must be 10 digits.</span>');
+        //}
+        //else if (phone == null || phone == undefined) {
+        //    $("#Phone").after('<span class="error-message" style="color:red;">Please enter Phone Number!</span>');
+
+        //}
 
         
-        const percentageNum = parseInt(percentage, 10);
-        if (!percentage || percentageNum < 1 || percentageNum > 100) {
-            isValid = false;
-            $("#Percentage").after('<span class="error-message" style="color:red;">Percentage must be between 1 and 100.</span>');
-        }
+        //const percentageNum = parseInt(percentage, 10);
+        //if (!percentage || percentageNum < 1 || percentageNum > 100) {
+        //    isValid = false;
+        //    $("#Percentage").after('<span class="error-message" style="color:red;">Percentage must be between 1 and 100.</span>');
+        //}
 
         
-        if (!isValid) {
-            return;
-        }
+        //if (!isValid) {
+        //    return;
+        //}
 
 
         var formData = {
@@ -80,7 +84,7 @@
             url: '/Students/Create',
             data: JSON.stringify(formData),
             contentType: "application/json",
-            cache: false,
+            
             success: function (students) {
                 console.log(students);
 
@@ -119,7 +123,8 @@
 
             },
             error: function (xhr, status, error) {
-                alert('An error occurred while saving the student. Please try again.');
+                document.getElementById('save-msg').style.display = "block";
+                $('#save-msg').empty().append(xhr.responseText.toString());
             }
         });
     });
